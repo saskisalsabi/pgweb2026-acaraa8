@@ -18,13 +18,14 @@ $sql = "SELECT * FROM kecamatan_jogja";
 $result = $conn->query($sql);
 
 if ($result && $result->num_rows > 0) {
-    echo "<table border=1px' cellpadding='8' cellspacing='0'>
+    echo "<table border='1px' cellpadding='8' cellspacing='0'>
     <tr>
         <th>Kecamatan</th>
         <th>Longitude</th>
         <th>Latitude</th>
         <th>Luas</th>
         <th>Jumlah Penduduk</th>
+        <th colspan='2'>Aksi</th>
     </tr>";
 
     // Output data per baris
@@ -35,6 +36,8 @@ if ($result && $result->num_rows > 0) {
             <td>".$row["latitude"]."</td>
             <td>".$row["luas"]."</td>
             <td align='right'>".number_format($row["jumlah_penduduk"])."</td>
+            <td><a href='delete.php?id=".$row["id"]."' onclick=\"return confirm('Apakah yakin ingin menghapus data ini?')\">Hapus</a></td>
+            <td><a href='edit/index.php?id=".$row["id"]."'>Edit</a></td>
         </tr>";
     }
     echo "</table>";
